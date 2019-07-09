@@ -10,7 +10,7 @@ function sassComp(cb) {
 }
 
 function sassWatch(cb) {
-  gulp.watch('./style/*.scss', gulp.series(sassComp));
+  gulp.watch('./assets/stylesheets/*.scss', gulp.series(sassComp));
   cb();
 }
 
