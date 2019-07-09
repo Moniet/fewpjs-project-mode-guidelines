@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   def create
-    if (User.find_by(username: params[:user]))
+    if (User.find_by(username: params[:username]))
       render :json => { :error => 'User exists already' }
     else
-      user = User.create(username: params[:user]);
+      user = User.create(username: params[:username]);
       render json: user, only: [:id, :username]
     end
   end
