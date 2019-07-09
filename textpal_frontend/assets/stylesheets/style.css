@@ -1,0 +1,13 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  grid-auto-rows: 200px;
+  grid-gap: 1.25em;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center; }
+
+.card {
+  border: 2px solid black;
+  height: 200px;
+  width: 200px; }
