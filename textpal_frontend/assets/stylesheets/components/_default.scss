@@ -2,7 +2,7 @@
 @import "variables";
 @import "mixins";
 @import "reboot";
-@import "forms"
+@import "forms";
 
 $theme-colors: map-remove($theme-colors, "info", "light", "dark");
 

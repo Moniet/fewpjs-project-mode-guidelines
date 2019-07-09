@@ -1,8 +1,7 @@
 @import "./components/default";
 
 %sidebar-flex {
-  flex-basis: 200px;
-  flex-shrink: 1;
+  flex-basis: 180px;
 }
 
 .wrapper {
@@ -20,16 +19,35 @@
   display: flex;
   flex-direction: column;
   flex-grow: 2;
-  background: white;
+  margin: 0 auto;
   padding: 2rem;
+  background: white;
+  max-width: 60%;
 
   .artboard {
     flex-grow: 2;
     padding: 2rem;
+    text-align: center;
+    word-wrap: break-word;
   }
 }
 
 .sidebar {
-  border-left: 5px solid $light-grey;
   @extend %sidebar-flex;
+}
+
+.form-control {
+  margin: 0 auto;
+  border-radius: 10px;
+  border: none;
+  min-height: 150px;
+  max-height: 150px;
+  width: 70%;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.15);
+}
+
+.f1 {
+  font-size: 5em;
+  color: $mute-black;
+  font-weight: bold;
 }
