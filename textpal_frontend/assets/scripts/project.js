@@ -2,33 +2,38 @@
 const userInput = document.querySelector('textarea');
 const artboard = document.querySelector('.artboard');
 const fontSizeInput = document.querySelector('.font_size');
+const fontColorInput = document.querySelector('.font_color');
+const bgColorInput = document.querySelector('.bg_color');
 
 // *selecting* tools
 const selectTool = document.querySelector('.select_tool');
 const cursorTool = document.querySelector('.cursor_tool');
 
-
 // *setting* tool vars and their default values
 let fontFace;
 let fontColor;
 let fontSize = 20;
-let fontType1 = 'h1';
-let fontType2 = 'p';
 let backgroundColor = '#fff';
 
 let selectedText;
 let selectedTextFontSize;
 let selectedTextFontColor;
-let selectedTool = '';
 
 function printUserInput() {
   selectedText.textContent = userInput.value;
+}
+
+function getStyle(prop) {
+  let el = window.getComputedStyle(selectedText);
+  let style = el.getPropertyValue(prop);
+  return style;
 }
 
 function updateValues(e) {
   updateSelectedText(e);
   updateFontSize();
   updateTextInput();
+  updateFontColor();
 }
 
 function updateSelectedText(e) {
@@ -36,14 +41,19 @@ function updateSelectedText(e) {
 }
 
 function updateFontSize() {
-  let el = window.getComputedStyle(selectedText);
-  let size = el.getPropertyValue('font-size');
+  let size = getStyle('font-size');
   fontSizeInput.value = parseInt(size);
 }
 
 function updateTextInput() {
   let text = selectedText.textContent;
   userInput.value = text;
+}
+
+function updateFontColor() {
+  let fontColor = getStyle('color');
+  fontColorInput.value = fontColor;
+  console.log(`font color: ${fontColor}`);
 }
 
 function setFontSize(e) {
@@ -53,9 +63,10 @@ function setFontSize(e) {
 
 function resetTextListeners() {
   let children = artboard.childNodes;
+
   for (let child of children) {
-    child.removeEventListener('click', e => updateValues(e), true);
-    console.log(child);
+    let newchild = child.cloneNode(true);
+    artboard.replaceChild(newchild, child);
   }
 }
 
@@ -63,16 +74,20 @@ function setToolToSelect(e) {
   resetTextListeners();
 
   artboard.childNodes.forEach(child => {
-    child.addEventListener('click', e => updateValues(e), true);
+    child.addEventListener('click', e => updateValues(e));
   });
 
   artboard.style.cursor = "url('./assets/icons/select_tool.svg'), auto";
 }
 
+function setFontColor(e) {
+  let color = e.target.value;
+  selectedText.style.color = color;
+}
+
 function init() {
   const h1 = document.createElement('h1');
   const h2 = document.createElement('h2');
-  h1.classList.add('pointer');
   h1.textContent = 'Hi there';
   h2.textContent = 'Enjoy creating on our platform';
   artboard.append(h1, h2);
@@ -81,11 +96,14 @@ function init() {
 
   // tool event listeners
   selectTool.addEventListener('click', e => setToolToSelect(e));
-  cursorTool.addEventListener('click', resetTextListeners);
+  cursorTool.addEventListener('click', () => {
+    resetTextListeners();
+  });
 
   // input event listeners
   userInput.addEventListener('keyup', printUserInput);
   fontSizeInput.addEventListener('change', e => setFontSize(e));
+  fontColorInput.addEventListener('change', e => setFontColor(e));
 }
 
 init();

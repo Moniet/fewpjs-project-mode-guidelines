@@ -16,7 +16,7 @@
   flex-flow: column wrap;
   @extend %sidebar-flex;
   background: $dark-grey;
-  padding: 0.5em;
+  padding: 2em;
 }
 
 .project_wrapper {
@@ -49,6 +49,15 @@
   max-height: 150px;
   width: 70%;
   box-shadow: 0px 0px 4px rgba(0,0,0,0.15);
+}
+
+.color_input {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  height: 1em;
+  width: 100%;
 }
 
 .f1 {

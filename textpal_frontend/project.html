@@ -32,12 +32,16 @@
       <div class="toolbar">
         <div class="tool_item">
           <label for="font_size">font size</label>
-          <input class="font_size" type="range" min="1" max="200" value="100">
+          <input id="font_size" class="font_size" type="range" min="10" max="200" value="60">
         </div>
         <div class="tool_item">
+          <label for="font_color">font color</label>
+          <input id="font_color" class="font_color color_input" type="color">
         </div>
-        <div class="tool_item"></div>
-        <div class="tool_item"></div>
+        <div class="tool_item">
+          <label for="bg_color">background color</label>
+          <input id="bg_color" class="bg_color color_input" type="color">
+        </div>
         <div class="layout_tools">
           <div class="column_layout"></div>
           <div class="row_layout"></div>
@@ -47,7 +51,6 @@
         <div class="artboard">
         </div>
         <textarea class="user_input form-control" name="name">
-
         </textarea>
       </div>
       <div class="sidebar">
