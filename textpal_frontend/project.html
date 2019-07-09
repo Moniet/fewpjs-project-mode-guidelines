@@ -31,8 +31,11 @@
     <div class="wrapper">
       <div class="toolbar">
         <div class="tool_item">
+          <label for="font_size">font size</label>
+          <input class="font_size" type="range" min="1" max="200" value="100">
         </div>
-        <div class="tool_item"></div>
+        <div class="tool_item">
+        </div>
         <div class="tool_item"></div>
         <div class="tool_item"></div>
         <div class="layout_tools">
@@ -48,10 +51,18 @@
         </textarea>
       </div>
       <div class="sidebar">
-        <buttons></buttons>
-        <buttons></buttons>
-        <buttons></buttons>
-        <buttons></buttons>
+        <div class="font_tools">
+          <button class="cursor_tool tool_btn">
+            <img src="./assets/icons/cursor_tool.svg" alt="select tool">
+          </button>
+          <button class="select_tool tool_btn">
+            <img src="./assets/icons/select_tool.svg" alt="select tool">
+          </button>
+          <button class="tool_btn bold">B</button>
+          <button class="tool_btn italic">I</button>
+          <button class="tool_btn button">U</button>
+          <button class="tool_btn button">+</button>
+        </div>
       </div>
     </div>
 

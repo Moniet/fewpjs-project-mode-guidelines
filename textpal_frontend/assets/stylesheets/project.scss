@@ -11,8 +11,12 @@
 }
 
 .toolbar {
-  background: $dark-grey;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
   @extend %sidebar-flex;
+  background: $dark-grey;
+  padding: 0.5em;
 }
 
 .project_wrapper {
@@ -34,6 +38,7 @@
 
 .sidebar {
   @extend %sidebar-flex;
+  padding: 2em;
 }
 
 .form-control {
@@ -50,4 +55,22 @@
   font-size: 5em;
   color: $mute-black;
   font-weight: bold;
+}
+
+.font_tools {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5em;
+}
+
+.tool_btn {
+  width: 30px;
+  height: 30px;
+}
+
+.artboard {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
 }

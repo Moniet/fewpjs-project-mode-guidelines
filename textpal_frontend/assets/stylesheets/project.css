@@ -668,6 +668,9 @@ textarea.form-control {
 .center {
   align-self: center; }
 
+.pointer {
+  cursor: pointer; }
+
 .grow-1 {
   flex-grow: 1; }
 
@@ -695,7 +698,11 @@ textarea.form-control {
   min-height: 90vh; }
 
 .toolbar {
-  background: #AEADAD; }
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+  background: #AEADAD;
+  padding: 0.5em; }
 
 .project_wrapper {
   display: flex;
@@ -711,6 +718,9 @@ textarea.form-control {
     text-align: center;
     word-wrap: break-word; }
 
+.sidebar {
+  padding: 2em; }
+
 .form-control {
   margin: 0 auto;
   border-radius: 10px;
@@ -724,3 +734,16 @@ textarea.form-control {
   font-size: 5em;
   color: #2D2D2D;
   font-weight: bold; }
+
+.font_tools {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5em; }
+
+.tool_btn {
+  width: 30px;
+  height: 30px; }
+
+.artboard h1, .artboard h2, .artboard h3, .artboard h4, .artboard h5, .artboard h6 {
+  margin: 0;
+  padding: 0; }
