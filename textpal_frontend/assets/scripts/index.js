@@ -75,7 +75,6 @@ function likeProject(project){
     },
     body: JSON.stringify(likeData)
   })
-    .then(res => res.json())
 }
 
 function unlikeProject(project){
@@ -88,13 +87,6 @@ function unlikeProject(project){
   })
 }
 
-
-function handleCommentFunctionality(commentButton, project, card){
-  commentButton.addEventListener("click", e => {
-    debugger
-  })
-}
-
 function likeExist(project){
   if (project.likes.find(like => like.user_id == localStorage["id"])){
     return true
@@ -103,3 +95,8 @@ function likeExist(project){
   }
 }
 
+function handleCommentFunctionality(commentButton, project, card){
+  commentButton.addEventListener("click", e => {
+    debugger
+  })
+}
