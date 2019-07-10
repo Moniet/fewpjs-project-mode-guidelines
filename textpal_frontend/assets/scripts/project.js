@@ -107,3 +107,22 @@ function init() {
 }
 
 init();
+
+userInput.addEventListener('keyup', printUserInput);
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  if(localStorage['username']) {
+    alert("Welcome to the world of Text Pal")
+  } else {
+    alert("You are not logged in")
+    window.location.href = "/textpal_frontend/signin.html";
+  }
+})
+
+// ADD THIS TO LOGOUT BUTTON
+// LOGOUTBUTTON.addEventListener("click", e =>{
+//   delete localStorage['username']
+//   alert("Logged out")
+//   window.location.href = "/textpal_frontend/signin.html";
+// })
