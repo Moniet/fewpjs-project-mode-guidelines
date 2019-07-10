@@ -1,0 +1,85 @@
+@import "./components/default";
+
+%sidebar-flex {
+  flex-basis: 180px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100vw;
+  min-height: 90vh;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+  @extend %sidebar-flex;
+  background: $dark-grey;
+  padding: 2em;
+}
+
+.project_wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  max-width: 60%;
+
+  .artboard {
+    flex-grow: 2;
+    padding: 2rem;
+    text-align: center;
+    word-wrap: break-word;
+  }
+}
+
+.sidebar {
+  @extend %sidebar-flex;
+  padding: 2em;
+}
+
+.form-control {
+  margin: 0 auto;
+  border-radius: 10px;
+  border: none;
+  min-height: 150px;
+  max-height: 150px;
+  width: 70%;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.15);
+}
+
+.color_input {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  height: 1em;
+  width: 100%;
+}
+
+.f1 {
+  font-size: 5em;
+  color: $mute-black;
+  font-weight: bold;
+}
+
+.font_tools {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5em;
+}
+
+.tool_btn {
+  width: 30px;
+  height: 30px;
+}
+
+.artboard {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
+}
