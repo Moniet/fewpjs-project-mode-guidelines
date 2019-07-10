@@ -8,16 +8,27 @@ const bgColorInput = document.querySelector('.bg_color');
 // *selecting* tools
 const selectTool = document.querySelector('.select_tool');
 const cursorTool = document.querySelector('.cursor_tool');
+const fontFace = document.querySelector('.font_face');
+const fontFaceMenu = document.querySelector('.font_face_menu');
 
 // *setting* tool vars and their default values
-let fontFace;
-let fontColor;
 let fontSize = 20;
-let backgroundColor = '#fff';
 
 let selectedText;
 let selectedTextFontSize;
 let selectedTextFontColor;
+
+
+function showHideFontFaceMenu() {
+  let fontMenuDisplay = fontFaceMenu.style.display;
+
+  if (fontMenuDisplay === 'none' || fontMenuDisplay === '') {
+    fontFaceMenu.style.display = 'block';
+  } else {
+    fontFaceMenu.style.display = 'none';
+  }
+
+}
 
 function printUserInput() {
   selectedText.textContent = userInput.value;
@@ -85,6 +96,11 @@ function setFontColor(e) {
   selectedText.style.color = color;
 }
 
+function setBackgroundColor(e) {
+  let color = e.target.value;
+  artboard.style.backgroundColor = color;
+}
+
 function init() {
   const h1 = document.createElement('h1');
   const h2 = document.createElement('h2');
@@ -104,6 +120,8 @@ function init() {
   userInput.addEventListener('keyup', printUserInput);
   fontSizeInput.addEventListener('change', e => setFontSize(e));
   fontColorInput.addEventListener('change', e => setFontColor(e));
+  bgColorInput.addEventListener('change', e => setBackgroundColor(e));
+  fontFace.addEventListener('click', showHideFontFaceMenu);
 }
 
 init();

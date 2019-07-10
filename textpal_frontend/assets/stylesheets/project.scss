@@ -12,11 +12,26 @@
 
 .toolbar {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   flex-flow: column wrap;
   @extend %sidebar-flex;
   background: $dark-grey;
   padding: 2em;
+
+  .tool_item {
+    margin: 1em 0;
+  }
+
+  .font_face {
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .font_face_menu {
+    display: none;
+  }
 }
 
 .project_wrapper {
