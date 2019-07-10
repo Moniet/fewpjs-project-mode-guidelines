@@ -73,10 +73,9 @@ function setFontType(e) {
   if (selectedText !== '') {
     let el = document.createElement(fontType);
     el.textContent = selectedText.textContent;
-    let styles = window.getComputedStyle(selectedText).cssText;
-    artboard.replaceChild(el, selectedText);
+    let styles = selectedText.style.cssText;
     el.style.cssText = styles;
-    console.log(styles);
+    artboard.replaceChild(el, selectedText);
     selectedText = el;
   }
 }
