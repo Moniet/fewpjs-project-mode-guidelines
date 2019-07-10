@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    project = Project.create(svg: params[:svg], user_id: params[:user_id])
+    render json: project.to_json(include: [:user, :likes, :comments])
   end
 
   def update
@@ -17,4 +19,5 @@ class ProjectsController < ApplicationController
     project = Project.find_by(id: params[:id])
     render json: project.to_json(include: [:user, :likes, :comments])
   end
+
 end

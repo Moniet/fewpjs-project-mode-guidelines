@@ -4,6 +4,7 @@ const artboard = document.querySelector('.artboard');
 const fontSizeInput = document.querySelector('.font_size');
 const fontColorInput = document.querySelector('.font_color');
 const bgColorInput = document.querySelector('.bg_color');
+const sidebar = document.querySelector(".sidebar")
 
 // *selecting* tools
 const selectTool = document.querySelector('.select_tool');
@@ -86,6 +87,8 @@ function setFontColor(e) {
 }
 
 function init() {
+  welcome()
+  createButton()
   const h1 = document.createElement('h1');
   const h2 = document.createElement('h2');
   h1.textContent = 'Hi there';
@@ -111,18 +114,39 @@ init();
 userInput.addEventListener('keyup', printUserInput);
 
 
-document.addEventListener("DOMContentLoaded", function() {
+function welcome() {
   if(localStorage['username']) {
     alert("Welcome to the world of Text Pal")
   } else {
     alert("You are not logged in")
     window.location.href = "/textpal_frontend/signin.html";
   }
-})
+}
 
-// ADD THIS TO LOGOUT BUTTON
-// LOGOUTBUTTON.addEventListener("click", e =>{
-//   delete localStorage['username']
-//   alert("Logged out")
-//   window.location.href = "/textpal_frontend/signin.html";
-// })
+function logout() {
+  delete localStorage["username"]
+  delete localStorage["id"]
+  init()
+}
+
+function createButton(){
+  const createButton = document.createElement("button")
+  createButton.innerText = "Create new project"
+  sidebar.append(createButton)
+  createFunctionality(createButton)
+}
+
+function createFunctionality(createButton){
+  createButton.addEventListener("click", e => {
+    const svg = artboard.innerHTML.trim()
+    const baseUrl = 'http://localhost:3000';
+    projectData = {user_id: localStorage["id"], svg: svg}
+    return fetch(`${baseUrl}/projects`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(projectData)
+    }).then(res => res.json()).then(alert("Project saved"))
+  })
+}

@@ -1,11 +1,31 @@
 const baseUrl = 'http://localhost:3000';
 const wrapper = document.querySelector('.wrapper');
 
-fetch(`${baseUrl}/projects`)
+init()
+
+function logout() {
+  delete localStorage["username"]
+  delete localStorage["id"]
+  init()
+}
+
+function welcome() {
+  if(localStorage['username']) {
+    alert("Welcome to the world of Text Pal")
+  } else {
+    alert("You are not logged in")
+    window.location.href = "/textpal_frontend/signin.html";
+  }
+}
+
+function init() { 
+  welcome()
+  fetch(`${baseUrl}/projects`)
   .then(res => res.json())
   .then(projects => {
     projects.forEach(project => renderCards(project));
   });
+}
 
 function renderCards(project) {
   const card = document.createElement('div');
@@ -18,6 +38,9 @@ function renderCards(project) {
 
   const likeCount = document.createElement("h5");
   likeCount.innerText = `${project.likes.length} Likes`
+
+  const commentCount = document.createElement("h5");
+  commentCount.innerText = `${project.comments.length} Comments`
 
   const likeButton = document.createElement("button");
   if (likeExist(project)){
@@ -38,7 +61,7 @@ function renderCards(project) {
   svgWrapper.classList.add('svg__wrapper');
   infoWrapper.classList.add('info__wrapper');
 
-  card.append(svgWrapper, infoWrapper, author, likeCount, likeButton, commentButton);
+  card.append(svgWrapper, infoWrapper, author, likeCount, commentCount, likeButton, commentButton);
 
   wrapper.appendChild(card);
 }
