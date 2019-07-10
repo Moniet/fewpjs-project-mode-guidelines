@@ -18,6 +18,7 @@ const alignRightTool = document.querySelector('.align_text_right');
 const alignCenterTool = document.querySelector('.align_text_center');
 const fontTypeTools = document.querySelectorAll('.font_type');
 const addTextBoxTool = document.querySelector('.add_text_box');
+const dropShadowWrapper = document.querySelector('.dropshow_wrapper');
 
 let fontSize = 20;
 let selectedText;
@@ -72,7 +73,10 @@ function setFontType(e) {
   if (selectedText !== '') {
     let el = document.createElement(fontType);
     el.textContent = selectedText.textContent;
+    let styles = window.getComputedStyle(selectedText).cssText;
     artboard.replaceChild(el, selectedText);
+    el.style.cssText = styles;
+    console.log(styles);
     selectedText = el;
   }
 }
@@ -86,6 +90,19 @@ function resetTextListeners() {
     newchild.className = '';
     artboard.replaceChild(newchild, child);
   }
+}
+
+function setDropShadow() {
+  let x = document.querySelector('.drop_shadow_x').value;
+  let y = document.querySelector('.drop_shadow_y').value;
+  let opacity = document.querySelector('.drop_shadow_opacity').value;
+  let blur = document.querySelector('.drop_shadow_blur').value;
+  let color = document.querySelector('.drop_shadow_color').value;
+
+  let newColor = color.split(',').splice(3, 1, `${opacity})`);
+
+  selectedText.style.textShadow = `${x}px ${y}px ${blur}px ${color}`;
+  // console.log(`${x}px ${y}px ${blur}px ${color}`);
 }
 
 function setToolToSelect(e) {
@@ -179,6 +196,7 @@ function init() {
   alignRightTool.addEventListener('click', () => selectedText.style.textAlign = 'right');
   alignCenterTool.addEventListener('click', () => selectedText.style.textAlign = 'center');
   addTextBoxTool.addEventListener('click', addTextBox);
+  dropShadowWrapper.addEventListener('input', setDropShadow);
   fontTypeTools.forEach(tool => {
     tool.addEventListener('click', setFontType);
   });
