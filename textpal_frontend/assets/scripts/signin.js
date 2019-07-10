@@ -15,10 +15,11 @@ function loginhandler(){
 }
 function login(user){
     if (user){
-        localStorage.setItem("username", USERNAME.value)
-        alert("Logged in")
+        localStorage.setItem("username", user['username'])
+        localStorage.setItem("id", user['id'])
+        window.location.href = "/textpal_frontend/project.html";
     } else {
-        alert("Not logged in")
+        alert("User does not exist")
     }
 }
 LOGIN.addEventListener("click", e => {

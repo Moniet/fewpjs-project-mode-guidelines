@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
   def index
-    # projects = Project.first_few
     projects = Project.all
-    render json: projects, only: [:id, :svg]
+    render json: projects.to_json(include: [:user, :likes, :comments])
   end
 
   def create
@@ -15,5 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    project = Project.find_by(id: params[:id])
+    render json: project.to_json(include: [:user, :likes, :comments])
   end
 end
