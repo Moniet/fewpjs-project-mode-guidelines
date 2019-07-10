@@ -20,12 +20,10 @@ function welcome() {
 
 function init() { 
   welcome()
-  fetch(`${baseUrl}/projects`)
+  fetch(`${baseUrl}/projects/${localStorage.project}`)
   .then(res => res.json())
-  .then(projects => {
-    projects.forEach(project => renderCards(project));
-  });
-}
+  .then(project => renderCards(project));
+  };
 
 function showProject(svg, project){
   svg.addEventListener("click", e => {
@@ -58,10 +56,21 @@ function renderCards(project) {
   }
   
   handleLikeFunctionality(likeButton, project, likeCount)
+
+  const commentField = document.createElement("textarea");
+  commentField.placeholder = "What do you think about this project?"
   
+  const commentsForProject = document.createElement("div")
+  commentsForProject.id = "comments"
+  fetchProject(project).then(updatedProject => addComments(updatedProject, commentsForProject))
+  
+  const commentButton = document.createElement("button");
+  commentButton.innerText = "Comment";
+  handleCommentFunctionality(commentButton, project, commentsForProject, commentField)
+
   card.classList.add('card');
 
-  card.append(svg, author, likeCount, commentCount, likeButton);
+  card.append(svg, author, likeCount, commentCount, likeButton, commentButton, commentField, commentsForProject);
 
   wrapper.appendChild(card);
 }
@@ -116,4 +125,40 @@ function likeExist(project){
   } else {
     return false
   }
+}
+
+function handleCommentFunctionality(commentButton, project, commentsForProject, commentField){
+  commentButton.addEventListener("click", e => {
+    fetchProject(project).then(updatedProject => postComment(updatedProject, commentField)).then(comment => updateDomComment(commentsForProject, comment))
+  })
+}
+
+function postComment(project, commentField){
+    commentData = {user_id: localStorage["id"], project_id: project.id, content: commentField.value}
+    return fetch(`${baseUrl}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commentData)
+    }).then(res => res.json())
+}
+
+function updateDomComment(commentsForProject,comment){
+    const h5 = document.createElement("h5")
+    h5.innerText = comment.user.username
+    const p = document.createElement("p")
+    p.innerText = comment.content
+    commentsForProject.append(h5, p)
+}
+
+function addComments(project, commentsForProject){
+    project.comments.forEach(comment => {
+        // debugger
+        // const h5 = document.createElement("h5")
+        // h5.innerText = comment.user.username
+        const p = document.createElement("p")
+        p.innerText = comment.content
+        commentsForProject.append(p)
+    })
 }
