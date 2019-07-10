@@ -15,6 +15,6 @@ end
 end
 
 15.times do
-  Like.create(project_id: rand(1..10))
-  Comment.create(content: Faker::Lorem.sentence(3), project_id: rand(1..10))
+  Like.create(project_id: rand(1..10), user_id: rand(1..5))
+  Comment.create(content: Faker::Lorem.sentence(3), project_id: rand(1..10), user_id: rand(1..5))
 end
