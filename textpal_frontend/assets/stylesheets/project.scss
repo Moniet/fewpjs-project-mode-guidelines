@@ -89,10 +89,10 @@
     width: 40px;
     height: 40px;
     border: none;
+    border-bottom: solid;
     img {
       width: 1rem;
     }
-    border-bottom: solid;
   }
 }
 
@@ -118,7 +118,6 @@
     border-radius: 10px 0px 0px 0px;
   }
   .tool_btn:last-child {
-    border-radius: 0px 0px 0px 10px;
     border-bottom: none;
   }
 }
@@ -135,7 +134,13 @@
 }
 
 .tools_wrapper:nth-child(2n) {
-  border: solid;
+  border-right: solid;
+  border-left: solid;
+  border-top: solid;
+  border-bottom: solid;
   border-radius:  0;
   overflow: hidden;
+  .tool_btn:first-child {
+    border-radius: 0;
+  }
 }

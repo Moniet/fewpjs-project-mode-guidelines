@@ -138,7 +138,6 @@
   .tools_wrapper:first-child .tool_btn:first-child {
     border-radius: 10px 0px 0px 0px; }
   .tools_wrapper:first-child .tool_btn:last-child {
-    border-radius: 0px 0px 0px 10px;
     border-bottom: none; }
 
 .tools_wrapper:last-child {
@@ -151,6 +150,11 @@
     border-radius: 0 10px 0 0; }
 
 .tools_wrapper:nth-child(2n) {
-  border: solid;
+  border-right: solid;
+  border-left: solid;
+  border-top: solid;
+  border-bottom: solid;
   border-radius: 0;
   overflow: hidden; }
+  .tools_wrapper:nth-child(2n) .tool_btn:first-child {
+    border-radius: 0; }
