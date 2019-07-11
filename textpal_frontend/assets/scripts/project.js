@@ -77,6 +77,9 @@ function setFontType(e) {
     el.style.cssText = styles;
     artboard.replaceChild(el, selectedText);
     selectedText = el;
+    if (currentTool === 'select') {
+      selectedText.contentEditable = 'true';
+    }
   }
 }
 
@@ -184,9 +187,9 @@ function init() {
   });
 
   // input event listeners
-  fontSizeInput.addEventListener('change', e => setFontSize(e));
+  fontSizeInput.addEventListener('input', e => setFontSize(e));
   fontColorInput.addEventListener('change', e => setFontColor(e));
-  bgColorInput.addEventListener('change', e => setBackgroundColor(e));
+  bgColorInput.addEventListener('input', e => setBackgroundColor(e));
   boldTool.addEventListener('click', setFontToBold);
   italicTool.addEventListener('click', setFontToItalic);
   underlineTool.addEventListener('click', setFontToUnderline);
