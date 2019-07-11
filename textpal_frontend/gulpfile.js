@@ -1,6 +1,15 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const browserSync = require('browser-sync').create();
 sass.compiler = require('node-sass');
+
+function browserSyncServer(cb) {
+  browserSync.init({
+    proxy: 'dev.dev',
+    port: '4000',
+  });
+  cb();
+}
 
 function sassComp(cb) {
   return gulp.src('./assets/stylesheets/*.scss')

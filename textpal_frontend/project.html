@@ -90,6 +90,22 @@
               </div>
             </div>
         </div>
+        <div class="tool_item">
+
+          <h4>dropshadow</h4>
+          <div class="dropshow_wrapper">
+            <label for="">X</label>
+            <input class="drop_shadow_x" type="range" min="0" max="20">
+            <label for="">Y</label>
+            <input class="drop_shadow_y" type="range" min="0" max="20">
+            <label for="">opacity</label>
+            <input class="drop_shadow_opacity" type="range" min="0.05" max="20">
+            <label for="">blur</label>
+            <input class="drop_shadow_blur" type="range" min="0" max="200">
+            <label for="">color</label>
+            <input class="color_input drop_shadow_color" type="color">
+          </div>
+        </div>
         <div class="layout_tools">
           <div class="column_layout"></div>
           <div class="row_layout"></div>
@@ -98,21 +114,35 @@
       <div class="project_wrapper">
         <div class="artboard">
         </div>
-        <textarea class="user_input form-control" name="name">
-        </textarea>
       </div>
       <div class="sidebar">
         <div class="font_tools">
-          <button class="cursor_tool tool_btn">
-            <img src="./assets/icons/cursor_tool.svg" alt="select tool">
-          </button>
-          <button class="select_tool tool_btn">
-            <img src="./assets/icons/select_tool.svg" alt="select tool">
-          </button>
-          <button class="tool_btn bold">B</button>
-          <button class="tool_btn italic">I</button>
-          <button class="tool_btn button">U</button>
-          <button class="tool_btn button">+</button>
+          <div class="tools_wrapper">
+            <button class="tool_btn font_type" data-font-type='h1'>h1</button>
+            <button class="tool_btn font_type" data-font-type='h2'>h2</button>
+            <button class="tool_btn font_type" data-font-type='h3'>h3</button>
+            <button class="tool_btn font_type" data-font-type='h4'>h4</button>
+            <button class="tool_btn font_type" data-font-type='h5'>h5</button>
+            <button class="tool_btn font_type" data-font-type='p'>p</button>
+            <button class="tool_btn font_type" data-font-type='b'>b</button>
+          </div>
+          <div class="tools_wrapper">
+            <button class="cursor_tool tool_btn">
+              <img src="./assets/icons/cursor_tool.svg" alt="select tool">
+            </button>
+            <button class="select_tool tool_btn">
+              <img src="./assets/icons/select_tool.svg" alt="select tool">
+            </button>
+            <button class="tool_btn bold">B</button>
+            <button class="tool_btn italic">I</button>
+            <button class="tool_btn underline">U</button>
+            <button class="tool_btn add_text_box">+</button>
+          </div>
+          <div class="tools_wrapper">
+            <button class="tool_btn align_text_left"><img src="./assets/icons/justify-left.svg"></button>
+            <button class="tool_btn align_text_center"><img src="./assets/icons/justify-center.svg"></button>
+            <button class="tool_btn align_text_right"><img src="./assets/icons/justify-right.svg"></button>
+          </div>
         </div>
       </div>
     </div>
