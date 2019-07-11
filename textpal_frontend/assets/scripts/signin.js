@@ -1,4 +1,6 @@
 const USERURL =  'http://localhost:3000/users';
+const homeBtn = document.querySelector('.person_icon');
+const createBtn = document.querySelector('.pencil_icon');
 
 function getUsers() {
   return fetch(USERURL)
@@ -15,6 +17,8 @@ function login(user) {
   if (user) {
     localStorage.setItem('username', user['username']);
     localStorage.setItem('id', user['id']);
+    createBtn.style.display = 'block';
+    homeBtn.style.display = 'block';
     renderIndexPage();
   } else {
     alert('User does not exist');

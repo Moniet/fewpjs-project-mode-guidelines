@@ -228,8 +228,10 @@ function projectPageInit() {
     createButton();
     const h1 = document.createElement('h1');
     const h2 = document.createElement('h2');
-    h1.textContent = 'Hi there';
-    h2.textContent = 'Enjoy creating on our platform';
+    h1.contentEditable = 'true';
+    h2.contentEditable = 'true';
+    h1.textContent = 'Welcome To Textpal';
+    h2.textContent = 'Have some some and drop a shadow';
     selectedText = h1;
     fontType = 'p';
     backDrop.append(h1, h2);

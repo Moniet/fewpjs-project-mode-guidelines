@@ -19,11 +19,12 @@ function logout() {
 function welcome() {
   if (localStorage.username) {
     renderIndexPage();
+    personIcon.style.display = 'block';
   } else {
-    alert('You are not logged in');
     renderTemplate('#sign-in');
     runSignIn();
     personIcon.style.display = 'none';
+    pencilIcon.style.display = 'none';
   }
 }
 
@@ -32,7 +33,7 @@ function renderIndexPage() {
   fetch(`${baseUrl}/projects`)
   .then(res => res.json())
   .then(projects => {
-    projects.reverse().forEach(project => renderCards(project));
+    renderIndexCards(projects.reverse());
   });
 }
 
@@ -44,7 +45,16 @@ function showProject(svg, project) {
   });
 }
 
-function renderCards(project) {
+function renderIndexCards(projects) {
+  const indexWrapper = document.createElement('div');
+  indexWrapper.className = 'index_wrapper';
+
+  projects.forEach(project => renderCards(project, indexWrapper));
+
+  wrapper.appendChild(indexWrapper);
+}
+
+function renderCards(project, container) {
   const card = document.createElement('div');
 
   const author = document.createElement('h2');
@@ -61,6 +71,7 @@ function renderCards(project) {
   commentCount.innerText = `${project.comments.length} Comments`;
 
   const likeButton = document.createElement('button');
+  likeButton.className = 'btn col-md-12';
   if (likeExist(project)) {
     likeButton.innerText = 'Unlike';
   } else {
@@ -69,11 +80,11 @@ function renderCards(project) {
 
   handleLikeFunctionality(likeButton, project, likeCount);
 
-  card.classList.add('card');
+  card.className = 'card';
 
   card.append(svg, author, likeCount, commentCount, likeButton);
 
-  wrapper.appendChild(card);
+  container.appendChild(card);
 };
 
 function handleLikeFunctionality(likeButton, project, likeCount) {
