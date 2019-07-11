@@ -206,21 +206,6 @@ function init() {
 
 init();
 
-function welcome() {
-  if (localStorage['username']) {
-    alert('Welcome to the world of Text Pal');
-  } else {
-    alert('You are not logged in');
-    window.location.href = '/textpal_frontend/signin.html';
-  }
-}
-
-function logout() {
-  delete localStorage['username'];
-  delete localStorage['id'];
-  init();
-}
-
 function createButton() {
   const createButton = document.createElement('button');
   createButton.innerText = 'Create new project';
