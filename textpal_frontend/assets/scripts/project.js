@@ -176,6 +176,50 @@ function projectPageInit() {
     selectedText.parentElement.removeChild(selectedText);
   }
 
+  function createButton() {
+    const createButton = document.createElement('button');
+    createButton.innerText = 'Create new project';
+    sidebar.append(createButton);
+    createFunctionality(createButton);
+  }
+
+  function createFunctionality(createButton) {
+    createButton.addEventListener('click', e => {
+      const svg = artboard.innerHTML.trim();
+      const baseUrl = 'http://localhost:3000';
+      projectData = { user_id: localStorage['id'], svg: svg };
+      return fetch(`${baseUrl}/projects`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projectData),
+      }).then(res => res.json()).then(alert('Project saved'));
+    });
+  }
+
+  function createButton() {
+    const createButton = document.createElement('button');
+    createButton.innerText = 'Create new project';
+    sidebar.append(createButton);
+    createFunctionality(createButton);
+  }
+
+  function createFunctionality(createButton) {
+    createButton.addEventListener('click', e => {
+      const svg = artboard.innerHTML.trim();
+      const baseUrl = 'http://localhost:3000';
+      projectData = { user_id: localStorage['id'], svg: svg };
+      return fetch(`${baseUrl}/projects`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projectData),
+      }).then(res => res.json()).then(alert('Project saved'));
+    });
+  }
+
   function init() {
     createButton();
     const h1 = document.createElement('h1');
@@ -208,28 +252,6 @@ function projectPageInit() {
     dropShadowWrapper.addEventListener('input', setDropShadow);
     fontTypeTools.forEach(tool => {
       tool.addEventListener('click', setFontType);
-    });
-  }
-
-  function createButton() {
-    const createButton = document.createElement('button');
-    createButton.innerText = 'Create new project';
-    sidebar.append(createButton);
-    createFunctionality(createButton);
-  }
-
-  function createFunctionality(createButton) {
-    createButton.addEventListener('click', e => {
-      const svg = artboard.innerHTML.trim();
-      const baseUrl = 'http://localhost:3000';
-      projectData = { user_id: localStorage['id'], svg: svg };
-      return fetch(`${baseUrl}/projects`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(projectData),
-      }).then(res => res.json()).then(alert('Project saved'));
     });
   }
 

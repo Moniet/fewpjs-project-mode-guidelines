@@ -4,7 +4,6 @@
   flex-basis: 180px;
 }
 
-
 .wrapper {
   display: flex;
   width: 100vw;
@@ -146,5 +145,8 @@
   overflow: hidden;
   .tool_btn:first-child {
     border-radius: 0;
+  }
+  .tool_btn:last-child {
+    border-bottom: 0;
   }
 }

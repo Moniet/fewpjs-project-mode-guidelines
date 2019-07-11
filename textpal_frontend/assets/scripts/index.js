@@ -5,8 +5,8 @@ const pencilIcon = document.querySelector('.pencil_icon');
 
 function renderTemplate(id) {
   wrapper.textContent = '';
-  let t = document.querySelector(id);
-  let content = t.content;
+  let template = document.querySelector(id);
+  let content = document.importNode(template.content, true);
   wrapper.appendChild(content);
 }
 
@@ -134,4 +134,8 @@ welcome();
 pencilIcon.addEventListener('click', () => {
   renderTemplate('#project-page');
   projectPageInit();
+});
+
+personIcon.addEventListener('click', () => {
+  renderIndexPage();
 });

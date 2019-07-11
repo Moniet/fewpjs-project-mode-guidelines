@@ -3,21 +3,22 @@
   width: 100vw;
   height: 100vh; }
 
+.reset_btn {
+  background: none;
+  border: none; }
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-content: center;
   background: #2D2D2D;
   padding: 1em; }
-  .navbar .nav_item {
-    list-style: none;
-    margin-left: 2em; }
   .navbar .navlist {
     display: flex; }
-  .navbar .navlink svg {
-    width: 100%;
-    height: 100%;
-    fill: #fff; }
+    .navbar .navlist .nav_item {
+      list-style: none;
+      margin-left: 2em;
+      color: white; }
   .navbar .brand {
     color: #fff; }
 
@@ -167,3 +168,5 @@
   overflow: hidden; }
   .tools_wrapper:nth-child(2n) .tool_btn:first-child {
     border-radius: 0; }
+  .tools_wrapper:nth-child(2n) .tool_btn:last-child {
+    border-bottom: 0; }
