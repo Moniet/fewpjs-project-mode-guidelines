@@ -2,6 +2,7 @@ const baseUrl = 'http://localhost:3000';
 const wrapper = document.querySelector('.page_wrapper');
 const personIcon = document.querySelector('.person_icon');
 const pencilIcon = document.querySelector('.pencil_icon');
+const logoutIcon = document.querySelector('.logout_icon');
 
 function renderTemplate(id) {
   wrapper.textContent = '';
@@ -13,7 +14,7 @@ function renderTemplate(id) {
 function logout() {
   delete localStorage['username'];
   delete localStorage['id'];
-  renderIndexPage();
+  welcome();
 }
 
 function welcome() {
@@ -25,6 +26,7 @@ function welcome() {
     runSignIn();
     personIcon.style.display = 'none';
     pencilIcon.style.display = 'none';
+    logoutIcon.style.display = 'none';
   }
 }
 
@@ -149,3 +151,5 @@ pencilIcon.addEventListener('click', () => {
 personIcon.addEventListener('click', () => {
   renderIndexPage();
 });
+
+logoutIcon.addEventListener('click', logout);

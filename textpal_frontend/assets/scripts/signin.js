@@ -1,10 +1,11 @@
 const USERURL =  'http://localhost:3000/users';
 const homeBtn = document.querySelector('.person_icon');
 const createBtn = document.querySelector('.pencil_icon');
+const logoutBtn = document.querySelector('.logout_icon');
 
 function getUsers() {
   return fetch(USERURL)
-  .then(userData => userData.json())
+  .then(userData => userData.json());
 }
 
 function loginhandler(userNameInput) {
@@ -19,6 +20,7 @@ function login(user) {
     localStorage.setItem('id', user['id']);
     createBtn.style.display = 'block';
     homeBtn.style.display = 'block';
+    logoutBtn.style.display = 'block';
     renderIndexPage();
   } else {
     alert('User does not exist');
