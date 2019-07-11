@@ -1,9 +1,8 @@
 const baseUrl = 'http://localhost:3000';
 const wrapper = document.querySelector('.page_wrapper');
 
-init();
-
 function renderTemplate(id) {
+  wrapper.textContent = '';
   let template = document.querySelector(id);
   let content = template.content;
   wrapper.appendChild(content);
@@ -12,12 +11,13 @@ function renderTemplate(id) {
 function logout() {
   delete localStorage['username'];
   delete localStorage['id'];
-  init();
+  renderIndexPage();
 }
 
 function welcome() {
   if (localStorage['username']) {
     alert('Welcome to the world of Text Pal');
+    renderIndexPage();
   } else {
     alert('You are not logged in');
     renderTemplate('#sign-in');
@@ -26,6 +26,7 @@ function welcome() {
 
 function renderIndexPage() {
   welcome();
+  wrapper.textContent = '';
   fetch(`${baseUrl}/projects`)
   .then(res => res.json())
   .then(projects => {
