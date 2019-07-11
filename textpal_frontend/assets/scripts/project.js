@@ -6,6 +6,7 @@ function projectPageInit() {
   const fontColorInput = document.querySelector('.font_color');
   const bgColorInput = document.querySelector('.bg_color');
   const sidebar = document.querySelector('.sidebar');
+  const backDrop = document.querySelector('.backdrop');
 
   // *selecting* tools
   const selectTool = document.querySelector('.select_tool');
@@ -78,7 +79,7 @@ function projectPageInit() {
       el.textContent = selectedText.textContent;
       let styles = selectedText.style.cssText;
       el.style.cssText = styles;
-      artboard.replaceChild(el, selectedText);
+      backDrop.replaceChild(el, selectedText);
       selectedText = el;
       if (currentTool === 'select') {
         selectedText.contentEditable = 'true';
@@ -87,13 +88,13 @@ function projectPageInit() {
   }
 
   function resetTextListeners() {
-    let children = artboard.childNodes;
+    let children = backDrop.childNodes;
 
     for (let child of children) {
       let newchild = child.cloneNode(true);
       newchild.contentEditable = 'false';
       newchild.className = '';
-      artboard.replaceChild(newchild, child);
+      backDrop.replaceChild(newchild, child);
     }
   }
 
@@ -113,7 +114,7 @@ function projectPageInit() {
   function setToolToSelect(e) {
     resetTextListeners();
 
-    artboard.childNodes.forEach(child => {
+    backDrop.childNodes.forEach(child => {
       child.contentEditable =  'true';
       child.addEventListener('click', e => {
         updateValues(e);
@@ -121,7 +122,7 @@ function projectPageInit() {
     });
 
     currentTool = 'select';
-    artboard.style.cursor = "url('./assets/icons/select_tool.svg'), auto";
+    backDrop.style.cursor = "url('./assets/icons/select_tool.svg'), auto";
   }
 
   function setFontColor(e) {
@@ -161,14 +162,15 @@ function projectPageInit() {
 
   function setBackgroundColor(e) {
     let color = e.target.value;
-    artboard.style.backgroundColor = color;
+
+    backDrop.style.backgroundColor = color;
   }
 
   function addTextBox() {
     let el = document.createElement(fontType);
     el.textContent = `I am an ${fontType} element`;
     if (currentTool === 'select') el.contentEditable = 'true';
-    artboard.appendChild(el);
+    backDrop.appendChild(el);
     selectedText = el;
   }
 
@@ -185,7 +187,7 @@ function projectPageInit() {
 
   function createFunctionality(createButton) {
     createButton.addEventListener('click', e => {
-      const svg = artboard.innerHTML.trim();
+      const svg = backDrop.innerHTML.trim();
       const baseUrl = 'http://localhost:3000';
       projectData = { user_id: localStorage['id'], svg: svg };
       return fetch(`${baseUrl}/projects`, {
@@ -200,13 +202,15 @@ function projectPageInit() {
 
   function createButton() {
     const createButton = document.createElement('button');
-    createButton.innerText = 'Create new project';
+    createButton.className = 'btn btn-secondary col-md-12';
+    createButton.innerText = 'save project';
     sidebar.append(createButton);
     createFunctionality(createButton);
   }
 
   function createFunctionality(createButton) {
     createButton.addEventListener('click', e => {
+      resetTextListeners();
       const svg = artboard.innerHTML.trim();
       const baseUrl = 'http://localhost:3000';
       projectData = { user_id: localStorage['id'], svg: svg };
@@ -228,7 +232,7 @@ function projectPageInit() {
     h2.textContent = 'Enjoy creating on our platform';
     selectedText = h1;
     fontType = 'p';
-    artboard.append(h1, h2);
+    backDrop.append(h1, h2);
 
     // tool event listeners
     selectTool.addEventListener('click', e => setToolToSelect(e));

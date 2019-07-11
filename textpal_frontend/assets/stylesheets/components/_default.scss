@@ -85,3 +85,9 @@ $artboard-bg: #EBEBEB;
   height: 150px;
   background: $light-grey;
 }
+
+.toast_wrapper {
+  position: absolute;
+  top: 5em;
+  right: 1em;
+}

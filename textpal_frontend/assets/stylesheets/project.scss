@@ -46,11 +46,15 @@
 
   .artboard {
     flex-grow: 2;
-    padding: 2rem;
+    padding: 0;
     text-align: center;
     word-wrap: break-word;
     background: white;
     border-radius: 5px;
+    .backdrop {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

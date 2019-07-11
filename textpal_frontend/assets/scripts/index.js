@@ -18,13 +18,12 @@ function logout() {
 
 function welcome() {
   if (localStorage.username) {
-    alert('Welcome to the world of Text Pal');
     renderIndexPage();
   } else {
     alert('You are not logged in');
     renderTemplate('#sign-in');
     runSignIn();
-    personIcon.style.display = none;
+    personIcon.style.display = 'none';
   }
 }
 
