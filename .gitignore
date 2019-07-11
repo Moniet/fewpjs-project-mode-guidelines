@@ -6,6 +6,7 @@ node_modules
 out
 tmp
 todo.txt
+gulpfile.js
 
 *.iml
 *.log
