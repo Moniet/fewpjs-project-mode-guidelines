@@ -1,21 +1,14 @@
-const baseUrl = 'http://localhost:3000';
-const wrapper = document.querySelector('.wrapper');
+function renderSingleProject(project) {
+  const artboard =  document.querySelector('.artboard');
+  const commentSection =  document.querySelector('.comment_section');
 
-function showProject(svg, project) {
-  svg.addEventListener('click', e => {
-    localStorage.setItem('project', project.id);
-    window.location.href = '/textpal_frontend/show.html';
-  });
-}
-
-function renderCards(project) {
+  const wrapper = document.querySelector('.wrapper');
   const card = document.createElement('div');
 
   const author = document.createElement('h2');
   author.innerText = project.user.username;
 
   const svg = document.createElement('div');
-  showProject(svg, project);
   svg.innerHTML = project.svg;
 
   const likeCount = document.createElement('h5');
@@ -46,9 +39,10 @@ function renderCards(project) {
 
   card.classList.add('card');
 
-  card.append(svg, author, likeCount, commentCount, likeButton, commentButton, commentField, commentsForProject);
+  artboard.append(svg);
+  card.append(author, likeCount, commentCount, likeButton, commentButton, commentField, commentsForProject);
 
-  wrapper.appendChild(card);
+  commentSection.appendChild(card);
 }
 
 function handleLikeFunctionality(likeButton, project, likeCount) {

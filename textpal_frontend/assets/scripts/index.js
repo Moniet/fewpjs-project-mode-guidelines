@@ -1,10 +1,12 @@
 const baseUrl = 'http://localhost:3000';
 const wrapper = document.querySelector('.page_wrapper');
+const personIcon = document.querySelector('.person_icon');
+const pencilIcon = document.querySelector('.pencil_icon');
 
 function renderTemplate(id) {
   wrapper.textContent = '';
-  let template = document.querySelector(id);
-  let content = template.content;
+  let t = document.querySelector(id);
+  let content = t.content;
   wrapper.appendChild(content);
 }
 
@@ -15,17 +17,18 @@ function logout() {
 }
 
 function welcome() {
-  if (localStorage['username']) {
+  if (localStorage.username) {
     alert('Welcome to the world of Text Pal');
     renderIndexPage();
   } else {
     alert('You are not logged in');
     renderTemplate('#sign-in');
+    runSignIn();
+    personIcon.style.display = none;
   }
 }
 
 function renderIndexPage() {
-  welcome();
   wrapper.textContent = '';
   fetch(`${baseUrl}/projects`)
   .then(res => res.json())
@@ -37,7 +40,8 @@ function renderIndexPage() {
 function showProject(svg, project) {
   svg.addEventListener('click', e => {
     localStorage.setItem('project', project.id);
-    window.location.href = '/textpal_frontend/show.html';
+    renderTemplate('#show-page');
+    renderSingleProject(project);
   });
 }
 
@@ -71,7 +75,7 @@ function renderCards(project) {
   card.append(svg, author, likeCount, commentCount, likeButton);
 
   wrapper.appendChild(card);
-}s;
+};
 
 function handleLikeFunctionality(likeButton, project, likeCount) {
   likeButton.addEventListener('click', e => {
@@ -124,3 +128,10 @@ function likeExist(project) {
     return false;
   }
 }
+
+welcome();
+
+pencilIcon.addEventListener('click', () => {
+  renderTemplate('#project-page');
+  projectPageInit();
+});
