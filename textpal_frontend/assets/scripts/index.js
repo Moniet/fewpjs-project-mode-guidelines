@@ -19,11 +19,12 @@ function logout() {
 function welcome() {
   if (localStorage.username) {
     renderIndexPage();
+    personIcon.style.display = 'block';
   } else {
-    alert('You are not logged in');
     renderTemplate('#sign-in');
     runSignIn();
     personIcon.style.display = 'none';
+    pencilIcon.style.display = 'none';
   }
 }
 
