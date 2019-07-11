@@ -4,13 +4,13 @@ class UsersController < ApplicationController
       render :json => { :error => 'User exists already' }
     else
       user = User.create(username: params[:username]);
-      render json: user, only: [:id, :username]
+      render json: user, serializer: UserSerializer
     end
   end
 
   def index
     users = User.all
-    render json: users, only: [:id, :username]
+    render json: users, each_serializer: UserSerializer
   end
 
   private

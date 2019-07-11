@@ -2,7 +2,7 @@ const USERURL =  'http://localhost:3000/users';
 
 function getUsers() {
   return fetch(USERURL)
-  .then(userData => userData.json());
+  .then(userData => userData.json())
 }
 
 function loginhandler(userNameInput) {

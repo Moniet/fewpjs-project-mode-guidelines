@@ -32,7 +32,7 @@ function renderIndexPage() {
   fetch(`${baseUrl}/projects`)
   .then(res => res.json())
   .then(projects => {
-    projects.forEach(project => renderCards(project));
+    projects.reverse().forEach(project => renderCards(project));
   });
 }
 

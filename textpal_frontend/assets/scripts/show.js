@@ -114,21 +114,22 @@ function postComment(project, commentField) {
   }).then(res => res.json());
 }
 
-function updateDomComment(commentsForProject, comment) {
+function updateDomComment(commentsForProject, comment) { // quick fix, refactor this to fetching the element and rendering
   const h5 = document.createElement('h5');
   h5.innerText = comment.user.username;
   const p = document.createElement('p');
   p.innerText = comment.content;
-  commentsForProject.append(h5, p);
+  commentsForProject.insertBefore(p, commentsForProject.childNodes[0]);
+  commentsForProject.insertBefore(h5, commentsForProject.childNodes[0]);
+  document.querySelector("textarea").value = ""
 }
 
 function addComments(project, commentsForProject) {
-  project.comments.forEach(comment => {
-      // debugger
-      // const h5 = document.createElement("h5")
-      // h5.innerText = comment.user.username
+  project.comments.reverse().forEach(comment => {
+      const h5 = document.createElement("h5")
+      h5.innerText = comment.author
       const p = document.createElement('p');
       p.innerText = comment.content;
-      commentsForProject.append(p);
+      commentsForProject.append(h5, p);
     });
 }
